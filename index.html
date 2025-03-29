@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Professional website development services tailored to your business needs. Responsive, SEO-friendly websites with custom features.">
+    <meta name="keywords" content="Website Development, Web Design, SEO, Frontend, Backend, Services">
+
+    <title>Website Development Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            padding: 10px;
+            font-size: 24px;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 15px 0px;
+            box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 10px 20px;
+            text-align: center;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            color: #f39c12;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            list-style: none;
+            padding: 10px;
+            top: 100%;
+            left: 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .content {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #F2F6FF;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h2 {
+            text-align: center;
+            text-shadow: 1px 1px 2.5px #333;
+            font-size: 32px;
+        }
+
+        .web {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .requirement {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        .requirement img {
+            width: 40%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .requirement p {
+            font-size: 17px;
+            text-align: left;
+            width: 57%;
+        }
+
+        .requirement:nth-child(odd) img {
+            order: -1;
+        }
+
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        .requirement,
+        .packages {
+            opacity: 0;
+            transform: translateY(30px);
+            /* Increased movement for a smoother effect */
+            transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+            /* Slower animation */
+        }
+
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        .packages {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #F2F6FF;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        .package-card {
+            display: inline-block;
+            width: 28%;
+            margin: 10px;
+            padding: 15px;
+            background: #F2F6FF;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .package-card h3 {
+            color: #333;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            nav ul.nav-links {
+                flex-direction: column;
+                display: none;
+                width: 100%;
+                background-color: #333;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                z-index: 99;
+            }
+
+            nav ul.nav-links.show {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: none;
+            }
+
+            .dropdown>a::after {
+                content: " ▼";
+                font-size: 12px;
+            }
+
+            .dropdown>a:focus+.dropdown-menu,
+            .dropdown>a:active+.dropdown-menu {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .package-card {
+                width: 90%;
+                display: block;
+                margin: 15px auto;
+            }
+
+            .requirement {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .requirement img,
+            .requirement p {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">MyLogo</div> <!-- Optional -->
+                <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="company.html">Company</a></li>
+                            <li><a href="team.html">Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="website-development.html">Website Development</a></li>
+                            <li><a href="digital-marketing.html">Digital Marketing</a></li>
+                            <li><a href="ad-making.html">Ad Making</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Work</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="work-website-development.html">Website Development</a></li>
+                            <li><a href="work-digital-marketing.html">Digital Marketing</a></li>
+                            <li><a href="work-ad-making.html">Ad Making</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <h1>Professional Website Development</h1>
+    </header>
+
+    <section class="content">
+        <h2>How We Create Websites for Our Clients</h2>
+        <div class="web">
+            <div class="requirement">
+                <img src="Requirement Analysis.jpg" alt="Requirement">
+                <p><strong>Requirement Analysis:</strong><br><br><b>1. Understanding Client Needs:</b> Discuss business
+                    objectives and website purpose.Identify target audience and key features required. <br><br> <b>2.
+                        Market Research & Competitor Analysis:</b> Study industry trends and competitors'
+                    websites.Identify unique selling points (USP) to stand out. <br><br> <b>3. Functional &
+                        Non-Functional Requirements:</b> Functional: Features like login system, contact forms, payment
+                    gateways, etc. Non-Functional: Performance, security, scalability, and user experience. <br><br>
+                    <b>4. Content & SEO Planning:</b> Define website structure (homepage, services, about, contact,
+                    etc.).Plan SEO-friendly content for better ranking. <br><br> <b>5. Technology Selection:</b> Choose
+                    programming languages (HTML, CSS, JavaScript, PHP, etc.).Decide CMS (WordPress, Shopify) or
+                    custom-built solutions. <br><br> <b>6. Wireframing & Documentation:</b> Create rough sketches or
+                    wireframes of website layout.Document all requirements for the development team.</p>
+            </div>
+            <div class="requirement">
+                <p><strong>Design & Mockup:</strong><br><br><b>1. Creating Mockups (High-Fidelity Design):</b> Develop a
+                    detailed visual representation of the final website.Include colors, images, fonts, and UI
+                    components.Ensure responsive design (adapts to mobile, tablet, and desktop). <br><br> <b>2. User
+                        Experience (UX) Optimization:</b> Design with user-friendliness in mind.Ensure easy navigation,
+                    readability, and clear call-to-action buttons. <br><br> <b>3. Client Review & Feedback:</b> Present
+                    the design to the client for approval.Make necessary revisions based on feedback.Once finalized,
+                    pass the design to developers for implementation.</p>
+                <img src="Design & Mockup.jpg" alt="Design & Mockup">
+            </div>
+            <div class="requirement">
+                <img src="Development.jpg" alt="Development">
+                <p><strong>Development:</strong><br><br> <b>Front-End Development (Client Side):</b> Uses HTML, CSS,
+                    JavaScript to create the visual structure and interactivity. Frameworks like React, Angular, or
+                    Vue.js may be used for dynamic web applications. Ensures a responsive design that works on all
+                    devices. <br><br> <b>Back-End Development (Server Side):</b> Handles database management, user
+                    authentication, and server logic. Uses programming languages like PHP, Python, Node.js, or Java.
+                    Databases like MySQL, MongoDB, PostgreSQL are used to store data. <br><br> <b>API Integration:</b>
+                    Connects the website with third-party services like payment gateways, social media, and analytics.
+                    Uses RESTful APIs or GraphQL for efficient data exchange. <br><br> <b>Content Management System
+                        (CMS) (If Needed):</b> Platforms like WordPress, Shopify, or Drupal are used for easy content
+                    updates. Custom-built CMS solutions can also be developed for specific needs. Security
+                    Implementation: Data encryption, SSL certificates, and firewalls to protect user data. Secure
+                    authentication using OAuth, JWT, or multi-factor authentication (MFA). <br><br> <b>Performance
+                        Optimization:</b> Minimizing CSS & JavaScript files, using CDNs for faster loading. Optimizing
+                    images, enabling lazy loading, and using caching techniques.</p>
+            </div>
+            <div class="requirement">
+                <p><strong>Testing:</strong><br><br> <b>1. Functional Testing:</b> Ensures that all website features
+                    (buttons, forms, links, navigation) work as expected. Tests login, registration, search
+                    functionality, and other interactive elements. <br><br> <b>2. Compatibility Testing:</b> Checks if
+                    the website works across different browsers (Chrome, Firefox, Safari, Edge). Ensures compatibility
+                    with devices (mobile, tablet, desktop). <br><br> <b>3. Performance Testing:</b> Measures page load
+                    speed, response time, and overall website performance. Identifies areas where optimization is needed
+                    (e.g., reducing image sizes, improving code). <br><br> <b>4. Security Testing:</b> Protects against
+                    vulnerabilities like SQL Injection, Cross-Site Scripting (XSS), and unauthorized access. Ensures
+                    user data and transactions are secure. <br><br> <b>5. Usability Testing:</b> Evaluates the website’s
+                    user experience (UX) to make sure it's easy to navigate. Identifies any confusing or frustrating
+                    elements that could affect user engagement. <br><br> <b>6. Bug Testing & Fixing:</b> Identifies and
+                    fixes broken links, layout issues, and missing elements. Uses testing tools and manual testing to
+                    catch errors before launch.</p>
+                <img src="Testing.jpg" alt="Testing">
+            </div>
+            <div class="requirement">
+                <img src="Deployment.jpeg" alt="Deployment">
+                <p><strong>Deployment:</strong> <br><br><b>1. Final Testing & Bug Fixes 🛠️ :</b> Ensure the website is
+                    bug-free and works perfectly on different devices and browsers. Check responsiveness, performance,
+                    and security. <br><br> <b>2. Choosing a Hosting Provider & Domain Name 🌍 :</b> A domain name (e.g.,
+                    www.example.com) is registered. A hosting service (like AWS, Bluehost, or Hostinger) is chosen to
+                    store website files.<br><br> <b>3. Uploading Website Files 📂 :</b> Files are transferred to the
+                    server using FTP (File Transfer Protocol) or GitHub Actions for automated deployment.<br><br> <b>4.
+                        Database Setup (If Needed) 🗄️ :</b> If the website has a database (e.g., MySQL, MongoDB), it is
+                    configured on the server.<br><br>
+                    <b>5. Configuring Server & Security 🔒 :</b> HTTPS (SSL/TLS) is enabled for security. Server
+                    settings (Apache, Nginx) are optimized for speed.<br><br> <b>6. DNS Configuration & Going Live 🚀
+                        :</b> The domain name is linked to the hosting server.Once set up, the website is live for users
+                    worldwide!<br><br> <b>7. Monitoring & Maintenance 🏗️ :</b> Regular updates, backups, and security
+                    checks are performed to keep the website running smoothly.
+                </p>
+            </div>
+            <div class="requirement">
+                <p><strong>Maintenance & Support:</strong> <br><br> <b>1. Regular Updates:</b> Keeping the CMS (like
+                    WordPress), plugins, and themes updated. Updating frameworks and libraries for security
+                    fixes.<br><br> <b>2. Bug Fixes & Performance Optimization:</b> Identifying and fixing broken links,
+                    page errors, or bugs. Optimizing page speed and responsiveness for better user experience.<br><br>
+                    <b>3. Security Monitoring & Backup:</b> Regularly scanning for malware, hacking attempts, and
+                    vulnerabilities. Taking automatic backups to prevent data loss.<br><br> <b>4. Content Updates:</b>
+                    Updating text, images, blogs, and products as per business needs. Improving SEO to maintain high
+                    rankings in search engines.<br><br> <b>5. Technical Support:</b> Providing helpdesk support for
+                    troubleshooting issues. Assisting with server downtimes, domain issues, and hosting problems.</p>
+                <img src="Maintenance & Support.jpg" alt="Maintenance & Support">
+            </div>
+        </div>
+    </section>
+    <section class="packages">
+        <h2>Choose Your Package</h2>
+        <div class="package-card">
+            <h3>Pro</h3>
+            <p>Basic website with essential features.</p>
+            <p>Price: $199</p>
+        </div>
+        <div class="package-card">
+            <h3>Pro Plus</h3>
+            <p>Advanced website with extra functionalities.</p>
+            <p>Price: $299</p>
+        </div>
+        <div class="package-card">
+            <h3>Prime</h3>
+            <p>Premium website with full customization.</p>
+            <p>Price: $499</p>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function checkVisibility() {
+                $('.requirement, .packages').each(function () {
+                    var top_of_element = $(this).offset().top;
+                    var bottom_of_screen = $(window).scrollTop() + $(window).height();
+                    var top_of_screen = $(window).scrollTop();
+
+                    if (bottom_of_screen > top_of_element && top_of_screen < top_of_element + $(this).outerHeight()) {
+                        $(this).addClass('fade-in');
+                    } else {
+                        $(this).removeClass('fade-in'); // Reset animation when scrolling back up
+                    }
+                });
+            }
+
+            $(window).on('scroll', function () {
+                checkVisibility();
+            });
+
+            checkVisibility(); // Ensure animation starts on page load
+
+            $('#menu-toggle').click(function () {
+                $('#nav-links').toggleClass('show');
+            });
+        });
+    </script>
+
+    <footer style="background:#333;color:white;padding:20px;text-align:center;">
+        © 2025 Your Company Name. All rights reserved.
+    </footer>
+
+</body>
+
+</html>
